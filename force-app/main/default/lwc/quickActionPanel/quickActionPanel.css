@@ -22,14 +22,14 @@
 
 .action-tile:hover,
 .action-tile:focus {
-  border-color: #0066b3;
+  border-color: #00c7b7;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transform: translateY(-2px);
   outline: none;
 }
 
 .action-tile__icon {
-  --slds-c-icon-color-foreground-default: #0066b3;
+  --slds-c-icon-color-foreground-default: #00c7b7;
 }
 
 .action-tile__label {

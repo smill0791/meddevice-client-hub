@@ -11,7 +11,7 @@
   padding: var(--lwc-spacingMedium, 1rem);
   background: var(--lwc-colorBackgroundAlt, #fff);
   border: 1px solid var(--lwc-colorBorder, #dddbda);
-  border-left: 4px solid var(--accent, #0066b3);
+  border-left: 4px solid var(--accent, #0a2540);
   border-radius: var(--lwc-borderRadiusMedium, 0.25rem);
   transition: box-shadow 0.15s ease;
 }
@@ -21,7 +21,7 @@
 }
 
 .summary-card__icon {
-  --slds-c-icon-color-foreground-default: var(--accent, #0066b3);
+  --slds-c-icon-color-foreground-default: var(--accent, #0a2540);
   flex-shrink: 0;
 }
 

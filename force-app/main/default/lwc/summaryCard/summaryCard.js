@@ -12,7 +12,7 @@ export default class SummaryCard extends LightningElement {
   @api label;
   @api value;
   @api iconName = "standard:metrics";
-  @api accent = "#0066b3";
+  @api accent = "#0a2540";
   @api isLoading = false;
 
   // 7. Getters

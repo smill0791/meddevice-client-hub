@@ -19,14 +19,14 @@
 .asset-card:hover,
 .asset-card:focus {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
-  border-left-color: #0066b3;
+  border-left-color: #00c7b7;
   outline: none;
   transform: translateY(-2px);
 }
 
 .asset-card_selected {
-  border-left-color: #0066b3;
-  background: #f3f9fd;
+  border-left-color: #0a2540;
+  background: #e6faf8;
 }
 
 .asset-card__title {

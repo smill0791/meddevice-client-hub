@@ -8,10 +8,10 @@
 
 .suggestion-chip {
   padding: 0.3rem 0.75rem;
-  border: 1px solid #0066b3;
+  border: 1px solid #00c7b7;
   border-radius: 1rem;
   background: #fff;
-  color: #0066b3;
+  color: #0a2540;
   font-size: 0.82rem;
   cursor: pointer;
   transition:
@@ -21,7 +21,7 @@
 
 .suggestion-chip:hover,
 .suggestion-chip:focus {
-  background: #0066b3;
-  color: #fff;
+  background: #00c7b7;
+  color: #0a2540;
   outline: none;
 }

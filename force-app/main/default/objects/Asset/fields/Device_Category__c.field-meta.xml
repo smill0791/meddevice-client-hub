@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/metadata">
+    <fullName>Device_Category__c</fullName>
+    <label>Device Category</label>
+    <type>Picklist</type>
+    <required>false</required>
+    <description>Type of medical device</description>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Blood Collection</fullName>
+                <default>false</default>
+                <label>Blood Collection</label>
+            </value>
+            <value>
+                <fullName>Apheresis</fullName>
+                <default>false</default>
+                <label>Apheresis</label>
+            </value>
+            <value>
+                <fullName>Cell Therapy</fullName>
+                <default>false</default>
+                <label>Cell Therapy</label>
+            </value>
+            <value>
+                <fullName>Transfusion</fullName>
+                <default>false</default>
+                <label>Transfusion</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

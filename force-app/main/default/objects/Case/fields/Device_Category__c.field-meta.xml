@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/metadata">
+    <fullName>Device_Category__c</fullName>
+    <label>Device Category</label>
+    <type>Text</type>
+    <formula>TEXT(Asset.Device_Category__c)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <required>false</required>
+    <description>Device category pulled from the related Asset</description>
+</CustomField>

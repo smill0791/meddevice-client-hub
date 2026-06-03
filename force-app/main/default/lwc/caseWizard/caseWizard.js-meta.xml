@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/Tooling">
+    <apiVersion>62.0</apiVersion>
+    <isExposed>true</isExposed>
+    <targets>
+        <target>lightning__AppPage</target>
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightningCommunity__Default">
+            <property name="accountId" type="String" label="Account ID"
+                description="Optional. The account whose devices populate the picker. Leave blank to use the logged-in portal user's account." />
+            <property name="preselectedAssetId" type="String" label="Preselected Device ID"
+                description="Optional. A device to pre-select in step 1 (e.g., when launched from a device page)." />
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

@@ -1,0 +1,22 @@
+<template>
+    <div class="slds-scoped-notification slds-media slds-media_center slds-theme_error" role="alert">
+        <div class="slds-media__figure">
+            <lightning-icon
+                icon-name="utility:error"
+                variant="inverse"
+                size="small"
+                alternative-text="Error">
+            </lightning-icon>
+        </div>
+        <div class="slds-media__body">
+            <p class="slds-text-title_bold">{friendlyMessage}</p>
+            <template lwc:if={hasMessages}>
+                <ul class="slds-list_dotted slds-m-top_xx-small">
+                    <template for:each={messages} for:item="msg">
+                        <li key={msg}>{msg}</li>
+                    </template>
+                </ul>
+            </template>
+        </div>
+    </div>
+</template>

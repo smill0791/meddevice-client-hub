@@ -1,0 +1,16 @@
+<template>
+    <div class="summary-card" style={cardStyle}>
+        <div class="summary-card__icon">
+            <lightning-icon icon-name={iconName} size="small"></lightning-icon>
+        </div>
+        <div class="summary-card__body">
+            <template lwc:if={isLoading}>
+                <div class="summary-card__value summary-card__value_loading">…</div>
+            </template>
+            <template lwc:else>
+                <div class="summary-card__value">{displayValue}</div>
+            </template>
+            <div class="summary-card__label">{label}</div>
+        </div>
+    </div>
+</template>

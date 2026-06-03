@@ -1,0 +1,15 @@
+<template>
+    <template lwc:if={hasSuggestions}>
+        <div class="suggestions slds-grid slds-wrap slds-gutters_direct-xx-small">
+            <template for:each={suggestions} for:item="suggestion">
+                <button
+                    key={suggestion}
+                    class="suggestion-chip"
+                    data-value={suggestion}
+                    onclick={handleClick}>
+                    {suggestion}
+                </button>
+            </template>
+        </div>
+    </template>
+</template>

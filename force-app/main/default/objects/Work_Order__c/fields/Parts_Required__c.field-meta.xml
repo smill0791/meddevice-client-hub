@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/metadata">
+    <fullName>Parts_Required__c</fullName>
+    <label>Parts Required</label>
+    <type>LongTextArea</type>
+    <length>2000</length>
+    <visibleLines>3</visibleLines>
+    <required>false</required>
+    <description>Parts needed for the service visit</description>
+</CustomField>

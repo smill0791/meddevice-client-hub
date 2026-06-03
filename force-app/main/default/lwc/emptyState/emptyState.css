@@ -1,0 +1,11 @@
+:host {
+    display: block;
+}
+
+.empty-state {
+    min-height: 12rem;
+}
+
+.empty-icon {
+    --slds-c-icon-color-foreground-default: var(--lwc-colorTextWeak, #747474);
+}

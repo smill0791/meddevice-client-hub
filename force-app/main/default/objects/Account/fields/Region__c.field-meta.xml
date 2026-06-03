@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/metadata">
+    <fullName>Region__c</fullName>
+    <label>Region</label>
+    <type>Text</type>
+    <length>50</length>
+    <required>false</required>
+    <description>Geographic region of the facility</description>
+    <inlineHelpText>Geographic region of the facility (e.g., Mountain West)</inlineHelpText>
+</CustomField>

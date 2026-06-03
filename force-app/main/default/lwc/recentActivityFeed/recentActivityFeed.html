@@ -1,0 +1,59 @@
+<template>
+    <article class="slds-card">
+        <div class="slds-card__header slds-grid">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-media__figure">
+                    <lightning-icon icon-name="utility:activity" size="small"></lightning-icon>
+                </div>
+                <div class="slds-media__body">
+                    <h2 class="slds-card__header-title">Recent Activity</h2>
+                </div>
+            </header>
+        </div>
+
+        <div class="slds-card__body slds-card__body_inner">
+            <template lwc:if={isLoading}>
+                <c-loading-skeleton variant="list" count="4"></c-loading-skeleton>
+            </template>
+
+            <template lwc:elseif={isEmpty}>
+                <c-empty-state
+                    title="No Recent Activity"
+                    message="New cases and updates will show up here."
+                    icon-name="utility:activity">
+                </c-empty-state>
+            </template>
+
+            <template lwc:elseif={error}>
+                <c-error-panel errors={error}></c-error-panel>
+            </template>
+
+            <template lwc:else>
+                <ul class="slds-has-dividers_bottom-space">
+                    <template for:each={recentCases} for:item="cse">
+                        <li
+                            key={cse.Id}
+                            class="slds-item feed-row"
+                            data-id={cse.Id}
+                            role="button"
+                            tabindex="0"
+                            onclick={handleClick}>
+                            <div class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center">
+                                <div class="slds-truncate slds-m-right_small">
+                                    <p class="slds-text-body_regular slds-truncate">{cse.Subject}</p>
+                                    <p class="slds-text-body_small slds-text-color_weak">
+                                        {cse.CaseNumber} &middot;
+                                        <lightning-formatted-date-time value={cse.CreatedDate}
+                                            year="numeric" month="short" day="2-digit">
+                                        </lightning-formatted-date-time>
+                                    </p>
+                                </div>
+                                <c-status-badge status={cse.Status}></c-status-badge>
+                            </div>
+                        </li>
+                    </template>
+                </ul>
+            </template>
+        </div>
+    </article>
+</template>

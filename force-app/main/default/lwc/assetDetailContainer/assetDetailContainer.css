@@ -1,0 +1,14 @@
+:host {
+    display: block;
+}
+
+.detail-stack {
+    position: sticky;
+    top: 1rem;
+}
+
+@media (max-width: 1024px) {
+    .detail-stack {
+        position: static;
+    }
+}

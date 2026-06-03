@@ -1,0 +1,194 @@
+<template>
+    <article class="slds-card slds-p-around_medium">
+        <!-- ============ SUCCESS SCREEN ============ -->
+        <template lwc:if={isComplete}>
+            <div class="slds-align_absolute-center slds-text-align_center slds-p-vertical_x-large">
+                <div>
+                    <lightning-icon icon-name="utility:success" size="large" variant="success"
+                        class="slds-m-bottom_small"></lightning-icon>
+                    <h2 class="slds-text-heading_medium slds-m-bottom_xx-small">Case Submitted</h2>
+                    <p class="slds-text-body_regular slds-text-color_weak slds-m-bottom_medium">
+                        Your support case has been created. Our team will be in touch shortly.
+                    </p>
+                    <div class="slds-button-group" role="group">
+                        <lightning-button variant="brand" label="View Case"
+                            onclick={handleViewCase}></lightning-button>
+                        <lightning-button label="Submit Another"
+                            onclick={handleStartAnother}></lightning-button>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+        <!-- ============ WIZARD ============ -->
+        <template lwc:else>
+            <lightning-progress-indicator current-step={currentStep} type="base"
+                has-error={submitError} variant="base">
+                <template for:each={steps} for:item="step">
+                    <lightning-progress-step key={step.value} label={step.label}
+                        value={step.value}></lightning-progress-step>
+                </template>
+            </lightning-progress-indicator>
+
+            <div class="slds-p-top_large step-body">
+                <!-- STEP 1: Select Device -->
+                <template lwc:if={isSelectStep}>
+                    <h3 class="slds-text-heading_small slds-m-bottom_small">
+                        Which device needs attention?
+                    </h3>
+                    <template lwc:if={assetsLoading}>
+                        <c-loading-skeleton variant="list" count="3"></c-loading-skeleton>
+                    </template>
+                    <template lwc:elseif={assetError}>
+                        <c-error-panel errors={assetError}></c-error-panel>
+                    </template>
+                    <template lwc:else>
+                        <lightning-combobox
+                            label="Device"
+                            placeholder="Select a device..."
+                            value={selectedAssetId}
+                            options={assetOptions}
+                            onchange={handleAssetChange}
+                            required>
+                        </lightning-combobox>
+                    </template>
+                </template>
+
+                <!-- STEP 2: Describe Issue -->
+                <template lwc:elseif={isDescribeStep}>
+                    <h3 class="slds-text-heading_small slds-m-bottom_small">Describe the issue</h3>
+                    <lightning-input
+                        class="describe-input slds-m-bottom_small"
+                        label="Subject"
+                        value={subject}
+                        onchange={handleSubjectChange}
+                        max-length="255"
+                        required>
+                    </lightning-input>
+                    <lightning-textarea
+                        class="describe-input slds-m-bottom_small"
+                        label="Description"
+                        value={description}
+                        onchange={handleDescriptionChange}
+                        message-when-value-missing="Please describe the issue"
+                        required>
+                    </lightning-textarea>
+                    <div class="slds-grid slds-wrap slds-gutters">
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <lightning-combobox
+                                label="Priority"
+                                value={priority}
+                                options={priorityOptions}
+                                onchange={handlePriorityChange}>
+                            </lightning-combobox>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <lightning-input
+                                label="Error Code (optional)"
+                                value={errorCode}
+                                onchange={handleErrorCodeChange}
+                                max-length="20">
+                            </lightning-input>
+                        </div>
+                    </div>
+                </template>
+
+                <!-- STEP 3: Attach Files -->
+                <template lwc:elseif={isAttachStep}>
+                    <h3 class="slds-text-heading_small slds-m-bottom_x-small">Attach files (optional)</h3>
+                    <p class="slds-text-body_small slds-text-color_weak slds-m-bottom_small">
+                        Add photos, logs, or screenshots that help us diagnose the issue.
+                    </p>
+
+                    <div class="slds-form-element file-drop slds-p-around_medium slds-m-bottom_small">
+                        <label class="slds-button slds-button_neutral" for="fileInput">
+                            <lightning-icon icon-name="utility:upload" size="x-small"
+                                class="slds-m-right_xx-small"></lightning-icon>
+                            Choose Files
+                        </label>
+                        <input id="fileInput" type="file" multiple class="slds-assistive-text"
+                            onchange={handleFileChange} />
+                        <p class="slds-text-body_small slds-text-color_weak slds-m-top_x-small">
+                            {fileCountLabel}
+                        </p>
+                    </div>
+
+                    <template lwc:if={hasStagedFiles}>
+                        <ul class="slds-has-dividers_bottom-space">
+                            <template for:each={stagedFiles} for:item="file">
+                                <li key={file.name}
+                                    class="slds-item slds-grid slds-grid_align-spread slds-grid_vertical-align-center">
+                                    <span>
+                                        <lightning-icon icon-name="doctype:attachment" size="x-small"
+                                            class="slds-m-right_x-small"></lightning-icon>
+                                        {file.name}
+                                    </span>
+                                    <lightning-button-icon icon-name="utility:delete"
+                                        variant="bare" alternative-text="Remove" data-name={file.name}
+                                        onclick={handleRemoveFile}></lightning-button-icon>
+                                </li>
+                            </template>
+                        </ul>
+                    </template>
+                </template>
+
+                <!-- STEP 4: Review & Submit -->
+                <template lwc:elseif={isReviewStep}>
+                    <h3 class="slds-text-heading_small slds-m-bottom_small">Review &amp; submit</h3>
+                    <template lwc:if={submitError}>
+                        <div class="slds-m-bottom_small">
+                            <c-error-panel errors={submitError}
+                                friendly-message="We couldn't create your case.">
+                            </c-error-panel>
+                        </div>
+                    </template>
+                    <dl class="slds-list_horizontal slds-wrap review-grid">
+                        <dt class="slds-item_label slds-text-color_weak">Device</dt>
+                        <dd class="slds-item_detail">{selectedAssetLabel}</dd>
+                        <dt class="slds-item_label slds-text-color_weak">Subject</dt>
+                        <dd class="slds-item_detail">{subject}</dd>
+                        <dt class="slds-item_label slds-text-color_weak">Description</dt>
+                        <dd class="slds-item_detail">{description}</dd>
+                        <dt class="slds-item_label slds-text-color_weak">Priority</dt>
+                        <dd class="slds-item_detail">{priority}</dd>
+                        <template lwc:if={errorCode}>
+                            <dt class="slds-item_label slds-text-color_weak">Error Code</dt>
+                            <dd class="slds-item_detail">{errorCode}</dd>
+                        </template>
+                        <dt class="slds-item_label slds-text-color_weak">Attachments</dt>
+                        <dd class="slds-item_detail">{fileCountLabel}</dd>
+                    </dl>
+                </template>
+            </div>
+
+            <!-- Footer navigation -->
+            <div class="slds-grid slds-grid_align-spread slds-m-top_large slds-border_top slds-p-top_small">
+                <div>
+                    <template lwc:if={isFirstStep}>
+                        <span></span>
+                    </template>
+                    <template lwc:else>
+                        <lightning-button label="Back" onclick={handleBack}
+                            disabled={isSubmitting}></lightning-button>
+                    </template>
+                </div>
+                <div>
+                    <template lwc:if={isLastStep}>
+                        <lightning-button variant="brand" label="Submit Case"
+                            onclick={handleSubmit} disabled={isSubmitting}></lightning-button>
+                    </template>
+                    <template lwc:else>
+                        <lightning-button variant="brand" label="Next"
+                            onclick={handleNext}></lightning-button>
+                    </template>
+                </div>
+            </div>
+
+            <template lwc:if={isSubmitting}>
+                <div class="slds-is-relative slds-p-around_medium">
+                    <lightning-spinner alternative-text="Submitting" size="small"></lightning-spinner>
+                </div>
+            </template>
+        </template>
+    </article>
+</template>

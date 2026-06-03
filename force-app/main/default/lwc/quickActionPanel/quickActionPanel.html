@@ -1,0 +1,33 @@
+<template>
+    <article class="slds-card">
+        <div class="slds-card__header slds-grid">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-media__figure">
+                    <lightning-icon icon-name="utility:apps" size="small"></lightning-icon>
+                </div>
+                <div class="slds-media__body">
+                    <h2 class="slds-card__header-title">Quick Actions</h2>
+                </div>
+            </header>
+        </div>
+
+        <div class="slds-card__body slds-card__body_inner">
+            <div class="slds-grid slds-wrap slds-gutters">
+                <template for:each={actions} for:item="action">
+                    <div key={action.key}
+                        class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-p-vertical_x-small">
+                        <button
+                            class="action-tile"
+                            data-key={action.key}
+                            onclick={handleAction}>
+                            <lightning-icon icon-name={action.iconName} size="small"
+                                class="slds-m-bottom_x-small action-tile__icon"></lightning-icon>
+                            <span class="action-tile__label">{action.label}</span>
+                            <span class="action-tile__desc">{action.description}</span>
+                        </button>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </article>
+</template>

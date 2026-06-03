@@ -1,0 +1,31 @@
+:host {
+    display: block;
+}
+
+.step-body {
+    min-height: 14rem;
+}
+
+.file-drop {
+    border: 1px dashed var(--lwc-colorBorder, #dddbda);
+    border-radius: var(--lwc-borderRadiusMedium, 0.25rem);
+    text-align: center;
+    background: var(--lwc-colorBackground, #fafaf9);
+}
+
+.review-grid dt {
+    width: 30%;
+    padding: 0.4rem 0.5rem 0.4rem 0;
+}
+
+.review-grid dd {
+    width: 70%;
+    padding: 0.4rem 0;
+}
+
+@media (max-width: 480px) {
+    .review-grid dt,
+    .review-grid dd {
+        width: 100%;
+    }
+}

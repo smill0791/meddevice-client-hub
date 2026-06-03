@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/Tooling">
+    <apiVersion>62.0</apiVersion>
+    <isExposed>true</isExposed>
+    <targets>
+        <target>lightning__AppPage</target>
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightningCommunity__Default">
+            <property name="newCasePageName" type="String" label="New Case Page Name" default="Support_Cases"
+                description="API name of the Experience page hosting the case wizard." />
+            <property name="aiAssistantPageName" type="String" label="AI Assistant Page Name" default="AI_Assistant"
+                description="API name of the AI Assistant page." />
+            <property name="knowledgePageName" type="String" label="Knowledge Page Name" default="Knowledge"
+                description="API name of the Knowledge page." />
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

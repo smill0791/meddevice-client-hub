@@ -1,0 +1,75 @@
+<template>
+    <article class="slds-card">
+        <div class="slds-card__header slds-grid">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-media__figure">
+                    <lightning-icon icon-name="standard:work_order" size="small"></lightning-icon>
+                </div>
+                <div class="slds-media__body">
+                    <h2 class="slds-card__header-title">Service History</h2>
+                </div>
+            </header>
+        </div>
+
+        <div class="slds-card__body slds-card__body_inner">
+            <!-- Loading -->
+            <template lwc:if={isLoading}>
+                <c-loading-skeleton variant="list" count="3"></c-loading-skeleton>
+            </template>
+
+            <!-- Empty -->
+            <template lwc:elseif={isEmpty}>
+                <c-empty-state
+                    title="No Service Visits"
+                    message="This device has no recorded service visits yet."
+                    icon-name="standard:work_order">
+                </c-empty-state>
+            </template>
+
+            <!-- Error -->
+            <template lwc:elseif={error}>
+                <c-error-panel errors={error}></c-error-panel>
+            </template>
+
+            <!-- Content -->
+            <template lwc:else>
+                <ul class="slds-timeline">
+                    <template for:each={workOrders} for:item="wo">
+                        <li key={wo.Id} class="slds-timeline__item_expandable slds-timeline__item_task timeline-item">
+                            <div class="slds-media">
+                                <div class="slds-media__figure timeline-marker">
+                                    <span class="slds-icon_container">
+                                        <lightning-icon icon-name="utility:wrench" size="x-small"></lightning-icon>
+                                    </span>
+                                </div>
+                                <div class="slds-media__body">
+                                    <div class="slds-grid slds-grid_align-spread">
+                                        <span class="slds-text-title_bold">{wo.Name}</span>
+                                        <c-status-badge status={wo.Status__c}></c-status-badge>
+                                    </div>
+                                    <template lwc:if={wo.displayDate}>
+                                        <p class="slds-text-body_small slds-text-color_weak">
+                                            <lightning-formatted-date-time value={wo.displayDate}
+                                                year="numeric" month="short" day="2-digit">
+                                            </lightning-formatted-date-time>
+                                        </p>
+                                    </template>
+                                    <template lwc:if={wo.Technician_Name__c}>
+                                        <p class="slds-text-body_small">
+                                            Technician: {wo.Technician_Name__c}
+                                        </p>
+                                    </template>
+                                    <template lwc:if={wo.Service_Notes__c}>
+                                        <p class="slds-text-body_small slds-m-top_xx-small">
+                                            {wo.Service_Notes__c}
+                                        </p>
+                                    </template>
+                                </div>
+                            </div>
+                        </li>
+                    </template>
+                </ul>
+            </template>
+        </div>
+    </article>
+</template>

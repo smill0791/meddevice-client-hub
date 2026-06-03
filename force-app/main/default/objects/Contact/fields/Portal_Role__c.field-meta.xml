@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/metadata">
+    <fullName>Portal_Role__c</fullName>
+    <label>Portal Role</label>
+    <type>Picklist</type>
+    <required>false</required>
+    <description>Role of the contact within the customer portal</description>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Biomedical Engineer</fullName>
+                <default>false</default>
+                <label>Biomedical Engineer</label>
+            </value>
+            <value>
+                <fullName>Lab Manager</fullName>
+                <default>false</default>
+                <label>Lab Manager</label>
+            </value>
+            <value>
+                <fullName>Admin</fullName>
+                <default>false</default>
+                <label>Admin</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

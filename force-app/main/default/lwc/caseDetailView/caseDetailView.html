@@ -1,0 +1,115 @@
+<template>
+    <article class="slds-card slds-p-around_medium">
+        <!-- Loading -->
+        <template lwc:if={isLoading}>
+            <c-loading-skeleton variant="detail" count="1"></c-loading-skeleton>
+        </template>
+
+        <!-- Empty -->
+        <template lwc:elseif={isEmpty}>
+            <c-empty-state
+                title="Case Not Found"
+                message="We couldn't load this case."
+                icon-name="standard:case">
+            </c-empty-state>
+        </template>
+
+        <!-- Error -->
+        <template lwc:elseif={error}>
+            <c-error-panel errors={error}></c-error-panel>
+        </template>
+
+        <!-- Content -->
+        <template lwc:else>
+            <!-- Header -->
+            <div class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center slds-m-bottom_small">
+                <div>
+                    <h2 class="slds-text-heading_medium">{caseRecord.Subject}</h2>
+                    <p class="slds-text-body_small slds-text-color_weak">{caseRecord.CaseNumber}</p>
+                </div>
+                <c-status-badge status={caseRecord.Status}></c-status-badge>
+            </div>
+
+            <lightning-tabset variant="scoped">
+                <!-- Overview -->
+                <lightning-tab label="Overview">
+                    <dl class="slds-list_horizontal slds-wrap detail-grid slds-p-top_small">
+                        <dt class="slds-item_label slds-text-color_weak">Priority</dt>
+                        <dd class="slds-item_detail">{caseRecord.Priority}</dd>
+
+                        <dt class="slds-item_label slds-text-color_weak">Origin</dt>
+                        <dd class="slds-item_detail">{caseRecord.Origin}</dd>
+
+                        <template lwc:if={assetName}>
+                            <dt class="slds-item_label slds-text-color_weak">Device</dt>
+                            <dd class="slds-item_detail">{assetName}</dd>
+                        </template>
+
+                        <template lwc:if={caseRecord.Device_Category__c}>
+                            <dt class="slds-item_label slds-text-color_weak">Device Category</dt>
+                            <dd class="slds-item_detail">{caseRecord.Device_Category__c}</dd>
+                        </template>
+
+                        <template lwc:if={caseRecord.Error_Code__c}>
+                            <dt class="slds-item_label slds-text-color_weak">Error Code</dt>
+                            <dd class="slds-item_detail slds-text-color_error">{caseRecord.Error_Code__c}</dd>
+                        </template>
+
+                        <dt class="slds-item_label slds-text-color_weak">Description</dt>
+                        <dd class="slds-item_detail">{caseRecord.Description}</dd>
+
+                        <template lwc:if={caseRecord.Resolution_Notes__c}>
+                            <dt class="slds-item_label slds-text-color_weak">Resolution Notes</dt>
+                            <dd class="slds-item_detail">{caseRecord.Resolution_Notes__c}</dd>
+                        </template>
+                    </dl>
+                </lightning-tab>
+
+                <!-- Comments -->
+                <lightning-tab label="Comments">
+                    <c-empty-state
+                        title="No Comments Yet"
+                        message="Updates from our support team will appear here."
+                        icon-name="standard:feed">
+                    </c-empty-state>
+                </lightning-tab>
+
+                <!-- Timeline -->
+                <lightning-tab label="Timeline">
+                    <ul class="slds-timeline slds-p-top_small">
+                        <li class="timeline-item">
+                            <p class="slds-text-title_bold">Case opened</p>
+                            <p class="slds-text-body_small slds-text-color_weak">
+                                <lightning-formatted-date-time value={caseRecord.CreatedDate}
+                                    year="numeric" month="short" day="2-digit"
+                                    hour="2-digit" minute="2-digit">
+                                </lightning-formatted-date-time>
+                            </p>
+                        </li>
+                        <template lwc:if={isClosed}>
+                            <li class="timeline-item">
+                                <p class="slds-text-title_bold">Case closed</p>
+                                <template lwc:if={caseRecord.ClosedDate}>
+                                    <p class="slds-text-body_small slds-text-color_weak">
+                                        <lightning-formatted-date-time value={caseRecord.ClosedDate}
+                                            year="numeric" month="short" day="2-digit"
+                                            hour="2-digit" minute="2-digit">
+                                        </lightning-formatted-date-time>
+                                    </p>
+                                </template>
+                            </li>
+                        </template>
+                    </ul>
+
+                    <template lwc:if={caseRecord.AssetId}>
+                        <div class="slds-m-top_medium">
+                            <h3 class="slds-text-title_bold slds-m-bottom_x-small">Device Service History</h3>
+                            <c-service-history-timeline asset-id={caseRecord.AssetId}>
+                            </c-service-history-timeline>
+                        </div>
+                    </template>
+                </lightning-tab>
+            </lightning-tabset>
+        </template>
+    </article>
+</template>

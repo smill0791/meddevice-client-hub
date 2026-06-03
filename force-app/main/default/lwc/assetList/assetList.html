@@ -1,0 +1,93 @@
+<template>
+    <div class="slds-card slds-p-around_medium">
+        <!-- Toolbar -->
+        <div class="slds-grid slds-wrap slds-gutters slds-m-bottom_small">
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_2-of-3">
+                <lightning-input
+                    type="search"
+                    label="Search devices"
+                    variant="label-hidden"
+                    placeholder="Search by name or serial number..."
+                    value={searchTerm}
+                    onchange={handleSearch}>
+                </lightning-input>
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+                <lightning-combobox
+                    label="Device category"
+                    variant="label-hidden"
+                    value={selectedCategory}
+                    options={categoryOptions}
+                    onchange={handleCategoryChange}>
+                </lightning-combobox>
+            </div>
+        </div>
+
+        <!-- Loading state -->
+        <template lwc:if={isLoading}>
+            <c-loading-skeleton variant="card" count="6"></c-loading-skeleton>
+        </template>
+
+        <!-- Empty state -->
+        <template lwc:elseif={isEmpty}>
+            <c-empty-state
+                title="No Devices Found"
+                message="No devices match your search. Try adjusting your filters."
+                icon-name="standard:asset_object">
+            </c-empty-state>
+        </template>
+
+        <!-- Error state -->
+        <template lwc:elseif={error}>
+            <c-error-panel errors={error}></c-error-panel>
+        </template>
+
+        <!-- Content -->
+        <template lwc:else>
+            <p class="slds-text-body_small slds-text-color_weak slds-m-bottom_x-small">
+                {resultCount} device(s)
+            </p>
+            <div class="slds-grid slds-wrap slds-gutters">
+                <template for:each={filteredAssets} for:item="asset">
+                    <div
+                        key={asset.Id}
+                        class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-3 slds-p-around_x-small">
+                        <div
+                            class={asset.cssClass}
+                            data-id={asset.Id}
+                            role="button"
+                            tabindex="0"
+                            onclick={handleAssetClick}
+                            onkeydown={handleAssetKeydown}>
+                            <div class="slds-grid slds-grid_align-spread slds-m-bottom_xx-small">
+                                <span class="slds-text-heading_small asset-card__title">{asset.Name}</span>
+                                <c-status-badge status={asset.Status}></c-status-badge>
+                            </div>
+                            <p class="slds-text-body_small slds-text-color_weak">
+                                <lightning-icon icon-name="utility:serial_number" size="xx-small"
+                                    class="slds-m-right_xx-small"></lightning-icon>
+                                {asset.SerialNumber}
+                            </p>
+                            <template lwc:if={asset.Device_Category__c}>
+                                <p class="slds-text-body_small slds-m-top_xx-small">
+                                    <lightning-icon icon-name="utility:tag" size="xx-small"
+                                        class="slds-m-right_xx-small"></lightning-icon>
+                                    {asset.Device_Category__c}
+                                </p>
+                            </template>
+                            <template lwc:if={asset.Warranty_Expiry__c}>
+                                <p class="slds-text-body_small slds-text-color_weak slds-m-top_xx-small">
+                                    Warranty until
+                                    <lightning-formatted-date-time
+                                        value={asset.Warranty_Expiry__c}
+                                        year="numeric" month="short" day="2-digit">
+                                    </lightning-formatted-date-time>
+                                </p>
+                            </template>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </template>
+    </div>
+</template>

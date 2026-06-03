@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/metadata">
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Warranty / SLA tracking for a customer account</description>
+    <enableActivities>true</enableActivities>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <label>Service Contract</label>
+    <pluralLabel>Service Contracts</pluralLabel>
+    <nameField>
+        <label>Contract Name</label>
+        <type>Text</type>
+    </nameField>
+    <sharingModel>Private</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

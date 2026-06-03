@@ -1,11 +1,11 @@
 :host {
-    display: block;
+  display: block;
 }
 
 .empty-state {
-    min-height: 12rem;
+  min-height: 12rem;
 }
 
 .empty-icon {
-    --slds-c-icon-color-foreground-default: var(--lwc-colorTextWeak, #747474);
+  --slds-c-icon-color-foreground-default: var(--lwc-colorTextWeak, #747474);
 }

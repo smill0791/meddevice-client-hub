@@ -1,70 +1,70 @@
 :host {
-    display: block;
+  display: block;
 }
 
 .chat-card {
-    display: flex;
-    flex-direction: column;
-    max-height: 36rem;
+  display: flex;
+  flex-direction: column;
+  max-height: 36rem;
 }
 
 .thread {
-    flex: 1;
-    overflow-y: auto;
-    min-height: 14rem;
-    max-height: 24rem;
+  flex: 1;
+  overflow-y: auto;
+  min-height: 14rem;
+  max-height: 24rem;
 }
 
 .input-row {
-    align-items: flex-end;
+  align-items: flex-end;
 }
 
 /* Typing indicator */
 .bubble {
-    max-width: 80%;
-    padding: 0.5rem 0.75rem;
-    border-radius: 1rem;
+  max-width: 80%;
+  padding: 0.5rem 0.75rem;
+  border-radius: 1rem;
 }
 
 .bubble_agent {
-    background: #f3f3f3;
-    border-bottom-left-radius: 0.25rem;
+  background: #f3f3f3;
+  border-bottom-left-radius: 0.25rem;
 }
 
 .typing {
-    display: inline-flex;
-    gap: 0.25rem;
-    align-items: center;
+  display: inline-flex;
+  gap: 0.25rem;
+  align-items: center;
 }
 
 .dot {
-    width: 0.4rem;
-    height: 0.4rem;
-    border-radius: 50%;
-    background: #939393;
-    animation: blink 1.4s infinite both;
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  background: #939393;
+  animation: blink 1.4s infinite both;
 }
 
 .dot:nth-child(2) {
-    animation-delay: 0.2s;
+  animation-delay: 0.2s;
 }
 .dot:nth-child(3) {
-    animation-delay: 0.4s;
+  animation-delay: 0.4s;
 }
 
 @keyframes blink {
-    0%,
-    80%,
-    100% {
-        opacity: 0.2;
-    }
-    40% {
-        opacity: 1;
-    }
+  0%,
+  80%,
+  100% {
+    opacity: 0.2;
+  }
+  40% {
+    opacity: 1;
+  }
 }
 
 @media (max-width: 480px) {
-    .chat-card {
-        max-height: none;
-    }
+  .chat-card {
+    max-height: none;
+  }
 }

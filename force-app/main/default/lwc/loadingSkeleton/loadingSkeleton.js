@@ -1,4 +1,4 @@
-import { LightningElement, api } from 'lwc';
+import { LightningElement, api } from "lwc";
 
 /**
  * Shimmer loading placeholder. Renders one or more skeleton blocks while data
@@ -9,25 +9,25 @@ import { LightningElement, api } from 'lwc';
  * Usage: <c-loading-skeleton variant="card" count="3"></c-loading-skeleton>
  */
 export default class LoadingSkeleton extends LightningElement {
-    // 1. Public reactive properties
-    @api variant = 'card';
-    @api count = 3;
+  // 1. Public reactive properties
+  @api variant = "card";
+  @api count = 3;
 
-    // 7. Getters
-    get items() {
-        const n = parseInt(this.count, 10) || 1;
-        return Array.from({ length: n }, (_, i) => ({ key: `skeleton-${i}` }));
-    }
+  // 7. Getters
+  get items() {
+    const n = parseInt(this.count, 10) || 1;
+    return Array.from({ length: n }, (_, i) => ({ key: `skeleton-${i}` }));
+  }
 
-    get isCard() {
-        return this.variant === 'card';
-    }
+  get isCard() {
+    return this.variant === "card";
+  }
 
-    get isList() {
-        return this.variant === 'list';
-    }
+  get isList() {
+    return this.variant === "list";
+  }
 
-    get isDetail() {
-        return this.variant === 'detail';
-    }
+  get isDetail() {
+    return this.variant === "detail";
+  }
 }

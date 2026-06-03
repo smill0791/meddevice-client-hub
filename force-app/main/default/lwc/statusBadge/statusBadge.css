@@ -1,7 +1,7 @@
 :host {
-    display: inline-block;
+  display: inline-block;
 }
 
 .slds-badge {
-    white-space: nowrap;
+  white-space: nowrap;
 }

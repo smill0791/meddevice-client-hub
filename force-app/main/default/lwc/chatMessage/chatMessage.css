@@ -1,29 +1,29 @@
 :host {
-    display: block;
+  display: block;
 }
 
 .msg-row {
-    margin-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .bubble {
-    max-width: 80%;
-    padding: 0.5rem 0.75rem;
-    border-radius: 1rem;
-    font-size: 0.9rem;
-    line-height: 1.35;
-    white-space: pre-wrap;
-    word-break: break-word;
+  max-width: 80%;
+  padding: 0.5rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.9rem;
+  line-height: 1.35;
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 
 .bubble_agent {
-    background: #f3f3f3;
-    color: #181818;
-    border-bottom-left-radius: 0.25rem;
+  background: #f3f3f3;
+  color: #181818;
+  border-bottom-left-radius: 0.25rem;
 }
 
 .bubble_user {
-    background: #0066b3;
-    color: #fff;
-    border-bottom-right-radius: 0.25rem;
+  background: #0066b3;
+  color: #fff;
+  border-bottom-right-radius: 0.25rem;
 }

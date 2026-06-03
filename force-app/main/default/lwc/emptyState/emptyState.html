@@ -1,25 +1,29 @@
 <template>
-    <div class="slds-align_absolute-center slds-text-align_center slds-p-around_large empty-state">
-        <div>
-            <lightning-icon
-                icon-name={iconName}
-                size="large"
-                alternative-text={title}
-                class="slds-m-bottom_small empty-icon">
-            </lightning-icon>
-            <h3 class="slds-text-heading_small slds-m-bottom_xx-small">{title}</h3>
-            <template lwc:if={message}>
-                <p class="slds-text-body_regular slds-text-color_weak">{message}</p>
-            </template>
-            <template lwc:if={hasAction}>
-                <div class="slds-m-top_medium">
-                    <lightning-button
-                        variant="brand"
-                        label={actionLabel}
-                        onclick={handleAction}>
-                    </lightning-button>
-                </div>
-            </template>
+  <div
+    class="slds-align_absolute-center slds-text-align_center slds-p-around_large empty-state"
+  >
+    <div>
+      <lightning-icon
+        icon-name={iconName}
+        size="large"
+        alternative-text={title}
+        class="slds-m-bottom_small empty-icon"
+      >
+      </lightning-icon>
+      <h3 class="slds-text-heading_small slds-m-bottom_xx-small">{title}</h3>
+      <template lwc:if={message}>
+        <p class="slds-text-body_regular slds-text-color_weak">{message}</p>
+      </template>
+      <template lwc:if={hasAction}>
+        <div class="slds-m-top_medium">
+          <lightning-button
+            variant="brand"
+            label={actionLabel}
+            onclick={handleAction}
+          >
+          </lightning-button>
         </div>
+      </template>
     </div>
+  </div>
 </template>

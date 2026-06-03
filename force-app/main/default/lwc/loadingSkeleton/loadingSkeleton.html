@@ -1,38 +1,51 @@
 <template>
-    <div class="slds-grid slds-wrap slds-gutters" aria-busy="true" aria-label="Loading">
-        <template for:each={items} for:item="item">
-            <!-- Card variant -->
-            <template lwc:if={isCard}>
-                <div key={item.key} class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-p-around_x-small">
-                    <div class="skeleton-card">
-                        <div class="shimmer skeleton-line skeleton-title"></div>
-                        <div class="shimmer skeleton-line skeleton-line_med"></div>
-                        <div class="shimmer skeleton-line skeleton-line_short"></div>
-                    </div>
-                </div>
-            </template>
+  <div
+    class="slds-grid slds-wrap slds-gutters"
+    aria-busy="true"
+    aria-label="Loading"
+  >
+    <template for:each={items} for:item="item">
+      <!-- Card variant -->
+      <template lwc:if={isCard}>
+        <div
+          key={item.key}
+          class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-p-around_x-small"
+        >
+          <div class="skeleton-card">
+            <div class="shimmer skeleton-line skeleton-title"></div>
+            <div class="shimmer skeleton-line skeleton-line_med"></div>
+            <div class="shimmer skeleton-line skeleton-line_short"></div>
+          </div>
+        </div>
+      </template>
 
-            <!-- List variant -->
-            <template lwc:elseif={isList}>
-                <div key={item.key} class="slds-col slds-size_1-of-1 slds-p-vertical_xx-small">
-                    <div class="skeleton-row">
-                        <div class="shimmer skeleton-avatar"></div>
-                        <div class="skeleton-row__body">
-                            <div class="shimmer skeleton-line skeleton-line_med"></div>
-                            <div class="shimmer skeleton-line skeleton-line_short"></div>
-                        </div>
-                    </div>
-                </div>
-            </template>
+      <!-- List variant -->
+      <template lwc:elseif={isList}>
+        <div
+          key={item.key}
+          class="slds-col slds-size_1-of-1 slds-p-vertical_xx-small"
+        >
+          <div class="skeleton-row">
+            <div class="shimmer skeleton-avatar"></div>
+            <div class="skeleton-row__body">
+              <div class="shimmer skeleton-line skeleton-line_med"></div>
+              <div class="shimmer skeleton-line skeleton-line_short"></div>
+            </div>
+          </div>
+        </div>
+      </template>
 
-            <!-- Detail variant -->
-            <template lwc:else>
-                <div key={item.key} class="slds-col slds-size_1-of-1 slds-p-vertical_xx-small">
-                    <div class="shimmer skeleton-line skeleton-title"></div>
-                    <div class="shimmer skeleton-line"></div>
-                    <div class="shimmer skeleton-line skeleton-line_med"></div>
-                </div>
-            </template>
-        </template>
-    </div>
+      <!-- Detail variant -->
+      <template lwc:else>
+        <div
+          key={item.key}
+          class="slds-col slds-size_1-of-1 slds-p-vertical_xx-small"
+        >
+          <div class="shimmer skeleton-line skeleton-title"></div>
+          <div class="shimmer skeleton-line"></div>
+          <div class="shimmer skeleton-line skeleton-line_med"></div>
+        </div>
+      </template>
+    </template>
+  </div>
 </template>

@@ -1,94 +1,108 @@
 <template>
-    <div class="slds-card slds-p-around_medium">
-        <!-- Toolbar -->
-        <div class="slds-grid slds-wrap slds-gutters slds-m-bottom_small">
-            <div class="slds-col slds-size_1-of-1 slds-medium-size_2-of-4">
-                <lightning-input
-                    type="search"
-                    label="Search cases"
-                    variant="label-hidden"
-                    placeholder="Search by subject or case number..."
-                    value={searchTerm}
-                    onchange={handleSearch}>
-                </lightning-input>
-            </div>
-            <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-4">
-                <lightning-combobox
-                    label="Status"
-                    variant="label-hidden"
-                    value={selectedStatus}
-                    options={statusOptions}
-                    onchange={handleStatusChange}>
-                </lightning-combobox>
-            </div>
-            <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-4">
-                <lightning-combobox
-                    label="Category"
-                    variant="label-hidden"
-                    value={selectedCategory}
-                    options={categoryOptions}
-                    onchange={handleCategoryChange}>
-                </lightning-combobox>
-            </div>
-        </div>
-
-        <!-- Loading -->
-        <template lwc:if={isLoading}>
-            <c-loading-skeleton variant="list" count="4"></c-loading-skeleton>
-        </template>
-
-        <!-- Empty -->
-        <template lwc:elseif={isEmpty}>
-            <c-empty-state
-                title="No Cases Found"
-                message="No support cases match your filters."
-                icon-name="standard:case">
-            </c-empty-state>
-        </template>
-
-        <!-- Error -->
-        <template lwc:elseif={error}>
-            <c-error-panel errors={error}></c-error-panel>
-        </template>
-
-        <!-- Content -->
-        <template lwc:else>
-            <p class="slds-text-body_small slds-text-color_weak slds-m-bottom_x-small">
-                {resultCount} case(s)
-            </p>
-            <ul class="slds-has-dividers_bottom-space">
-                <template for:each={filteredCases} for:item="cse">
-                    <li
-                        key={cse.Id}
-                        class="slds-item case-row"
-                        data-id={cse.Id}
-                        role="button"
-                        tabindex="0"
-                        onclick={handleCaseClick}>
-                        <div class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center">
-                            <div class="slds-truncate slds-m-right_small">
-                                <p class="slds-text-body_regular slds-truncate">{cse.Subject}</p>
-                                <p class="slds-text-body_small slds-text-color_weak">
-                                    {cse.CaseNumber}
-                                    <template lwc:if={cse.Asset.Name}>
-                                        &nbsp;&middot;&nbsp;{cse.Asset.Name}
-                                    </template>
-                                </p>
-                            </div>
-                            <div class="slds-grid slds-grid_vertical-align-center slds-gutters_direct-x-small">
-                                <lightning-icon
-                                    icon-name="utility:priority"
-                                    size="xx-small"
-                                    class="slds-m-right_x-small"
-                                    alternative-text={cse.Priority}
-                                    title={cse.Priority}>
-                                </lightning-icon>
-                                <c-status-badge status={cse.Status}></c-status-badge>
-                            </div>
-                        </div>
-                    </li>
-                </template>
-            </ul>
-        </template>
+  <div class="slds-card slds-p-around_medium">
+    <!-- Toolbar -->
+    <div class="slds-grid slds-wrap slds-gutters slds-m-bottom_small">
+      <div class="slds-col slds-size_1-of-1 slds-medium-size_2-of-4">
+        <lightning-input
+          type="search"
+          label="Search cases"
+          variant="label-hidden"
+          placeholder="Search by subject or case number..."
+          value={searchTerm}
+          onchange={handleSearch}
+        >
+        </lightning-input>
+      </div>
+      <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-4">
+        <lightning-combobox
+          label="Status"
+          variant="label-hidden"
+          value={selectedStatus}
+          options={statusOptions}
+          onchange={handleStatusChange}
+        >
+        </lightning-combobox>
+      </div>
+      <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-4">
+        <lightning-combobox
+          label="Category"
+          variant="label-hidden"
+          value={selectedCategory}
+          options={categoryOptions}
+          onchange={handleCategoryChange}
+        >
+        </lightning-combobox>
+      </div>
     </div>
+
+    <!-- Loading -->
+    <template lwc:if={isLoading}>
+      <c-loading-skeleton variant="list" count="4"></c-loading-skeleton>
+    </template>
+
+    <!-- Empty -->
+    <template lwc:elseif={isEmpty}>
+      <c-empty-state
+        title="No Cases Found"
+        message="No support cases match your filters."
+        icon-name="standard:case"
+      >
+      </c-empty-state>
+    </template>
+
+    <!-- Error -->
+    <template lwc:elseif={error}>
+      <c-error-panel errors={error}></c-error-panel>
+    </template>
+
+    <!-- Content -->
+    <template lwc:else>
+      <p
+        class="slds-text-body_small slds-text-color_weak slds-m-bottom_x-small"
+      >
+        {resultCount} case(s)
+      </p>
+      <ul class="slds-has-dividers_bottom-space">
+        <template for:each={filteredCases} for:item="cse">
+          <li
+            key={cse.Id}
+            class="slds-item case-row"
+            data-id={cse.Id}
+            role="button"
+            tabindex="0"
+            onclick={handleCaseClick}
+          >
+            <div
+              class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center"
+            >
+              <div class="slds-truncate slds-m-right_small">
+                <p class="slds-text-body_regular slds-truncate">
+                  {cse.Subject}
+                </p>
+                <p class="slds-text-body_small slds-text-color_weak">
+                  {cse.CaseNumber}
+                  <template lwc:if={cse.Asset.Name}>
+                    &nbsp;&middot;&nbsp;{cse.Asset.Name}
+                  </template>
+                </p>
+              </div>
+              <div
+                class="slds-grid slds-grid_vertical-align-center slds-gutters_direct-x-small"
+              >
+                <lightning-icon
+                  icon-name="utility:priority"
+                  size="xx-small"
+                  class="slds-m-right_x-small"
+                  alternative-text={cse.Priority}
+                  title={cse.Priority}
+                >
+                </lightning-icon>
+                <c-status-badge status={cse.Status}></c-status-badge>
+              </div>
+            </div>
+          </li>
+        </template>
+      </ul>
+    </template>
+  </div>
 </template>

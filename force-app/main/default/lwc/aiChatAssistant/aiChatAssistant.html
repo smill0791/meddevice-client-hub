@@ -1,61 +1,70 @@
 <template>
-    <article class="slds-card chat-card">
-        <div class="slds-card__header slds-grid">
-            <header class="slds-media slds-media_center slds-has-flexi-truncate">
-                <div class="slds-media__figure">
-                    <lightning-icon icon-name="utility:einstein" size="small"></lightning-icon>
-                </div>
-                <div class="slds-media__body">
-                    <h2 class="slds-card__header-title">AI Assistant</h2>
-                </div>
-            </header>
+  <article class="slds-card chat-card">
+    <div class="slds-card__header slds-grid">
+      <header class="slds-media slds-media_center slds-has-flexi-truncate">
+        <div class="slds-media__figure">
+          <lightning-icon
+            icon-name="utility:einstein"
+            size="small"
+          ></lightning-icon>
         </div>
-
-        <!-- Message thread -->
-        <div class="thread slds-p-horizontal_small slds-p-vertical_x-small">
-            <template for:each={messages} for:item="msg">
-                <c-chat-message key={msg.id} message={msg}></c-chat-message>
-            </template>
-
-            <template lwc:if={isThinking}>
-                <div class="slds-grid slds-grid_align-start slds-m-bottom_small">
-                    <div class="bubble bubble_agent typing">
-                        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-                    </div>
-                </div>
-            </template>
+        <div class="slds-media__body">
+          <h2 class="slds-card__header-title">AI Assistant</h2>
         </div>
+      </header>
+    </div>
 
-        <!-- Suggestions -->
-        <div class="slds-p-horizontal_small slds-p-bottom_x-small">
-            <c-suggested-actions-panel
-                suggestions={suggestions}
-                onsuggestionclick={handleSuggestion}>
-            </c-suggested-actions-panel>
-        </div>
+    <!-- Message thread -->
+    <div class="thread slds-p-horizontal_small slds-p-vertical_x-small">
+      <template for:each={messages} for:item="msg">
+        <c-chat-message key={msg.id} message={msg}></c-chat-message>
+      </template>
 
-        <!-- Input row -->
-        <div class="slds-grid slds-gutters_direct-x-small slds-p-around_small slds-border_top input-row">
-            <div class="slds-col slds-grow">
-                <lightning-input
-                    type="text"
-                    label="Message"
-                    variant="label-hidden"
-                    placeholder="Type your message..."
-                    value={draft}
-                    onchange={handleInputChange}
-                    onkeyup={handleKeyUp}>
-                </lightning-input>
-            </div>
-            <div class="slds-col slds-no-flex slds-align-bottom">
-                <lightning-button
-                    variant="brand"
-                    label="Send"
-                    icon-name="utility:send"
-                    onclick={handleSend}
-                    disabled={isSendDisabled}>
-                </lightning-button>
-            </div>
+      <template lwc:if={isThinking}>
+        <div class="slds-grid slds-grid_align-start slds-m-bottom_small">
+          <div class="bubble bubble_agent typing">
+            <span class="dot"></span><span class="dot"></span
+            ><span class="dot"></span>
+          </div>
         </div>
-    </article>
+      </template>
+    </div>
+
+    <!-- Suggestions -->
+    <div class="slds-p-horizontal_small slds-p-bottom_x-small">
+      <c-suggested-actions-panel
+        suggestions={suggestions}
+        onsuggestionclick={handleSuggestion}
+      >
+      </c-suggested-actions-panel>
+    </div>
+
+    <!-- Input row -->
+    <div
+      class="slds-grid slds-gutters_direct-x-small slds-p-around_small slds-border_top input-row"
+    >
+      <div class="slds-col slds-grow">
+        <lightning-input
+          type="text"
+          label="Message"
+          variant="label-hidden"
+          placeholder="Type your message..."
+          value={draft}
+          onchange={handleInputChange}
+          onkeyup={handleKeyUp}
+        >
+        </lightning-input>
+      </div>
+      <div class="slds-col slds-no-flex slds-align-bottom">
+        <lightning-button
+          variant="brand"
+          label="Send"
+          icon-name="utility:send"
+          onclick={handleSend}
+          disabled={isSendDisabled}
+        >
+        </lightning-button>
+      </div>
+    </div>
+  </article>
 </template>

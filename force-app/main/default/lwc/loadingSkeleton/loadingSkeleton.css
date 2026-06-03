@@ -1,81 +1,76 @@
 :host {
-    display: block;
+  display: block;
 }
 
 .skeleton-card {
-    padding: var(--lwc-spacingMedium, 1rem);
-    border: 1px solid var(--lwc-colorBorder, #dddbda);
-    border-radius: var(--lwc-borderRadiusMedium, 0.25rem);
-    background: var(--lwc-colorBackgroundAlt, #fff);
+  padding: var(--lwc-spacingMedium, 1rem);
+  border: 1px solid var(--lwc-colorBorder, #dddbda);
+  border-radius: var(--lwc-borderRadiusMedium, 0.25rem);
+  background: var(--lwc-colorBackgroundAlt, #fff);
 }
 
 .skeleton-row {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: var(--lwc-spacingSmall, 0.75rem);
-    border: 1px solid var(--lwc-colorBorder, #dddbda);
-    border-radius: var(--lwc-borderRadiusMedium, 0.25rem);
-    background: var(--lwc-colorBackgroundAlt, #fff);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: var(--lwc-spacingSmall, 0.75rem);
+  border: 1px solid var(--lwc-colorBorder, #dddbda);
+  border-radius: var(--lwc-borderRadiusMedium, 0.25rem);
+  background: var(--lwc-colorBackgroundAlt, #fff);
 }
 
 .skeleton-row__body {
-    flex: 1;
+  flex: 1;
 }
 
 .skeleton-avatar {
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: 50%;
-    flex-shrink: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  flex-shrink: 0;
 }
 
 .skeleton-line {
-    height: 0.75rem;
-    border-radius: 0.25rem;
-    margin-bottom: 0.5rem;
+  height: 0.75rem;
+  border-radius: 0.25rem;
+  margin-bottom: 0.5rem;
 }
 
 .skeleton-line:last-child {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .skeleton-title {
-    height: 1rem;
-    width: 60%;
+  height: 1rem;
+  width: 60%;
 }
 
 .skeleton-line_med {
-    width: 85%;
+  width: 85%;
 }
 
 .skeleton-line_short {
-    width: 40%;
+  width: 40%;
 }
 
 /* Shimmer animation */
 .shimmer {
-    background: linear-gradient(
-        90deg,
-        #f3f3f3 25%,
-        #ecebeb 37%,
-        #f3f3f3 63%
-    );
-    background-size: 400% 100%;
-    animation: shimmer 1.4s ease infinite;
+  background: linear-gradient(90deg, #f3f3f3 25%, #ecebeb 37%, #f3f3f3 63%);
+  background-size: 400% 100%;
+  animation: shimmer 1.4s ease infinite;
 }
 
 @keyframes shimmer {
-    0% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0 50%;
-    }
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
 }
 
 @media (max-width: 768px) {
-    .skeleton-card {
-        padding: var(--lwc-spacingSmall, 0.75rem);
-    }
+  .skeleton-card {
+    padding: var(--lwc-spacingSmall, 0.75rem);
+  }
 }

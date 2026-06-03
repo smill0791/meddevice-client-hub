@@ -1,63 +1,72 @@
 <template>
-    <article class="slds-card">
-        <div class="slds-card__header slds-grid">
-            <header class="slds-media slds-media_center slds-has-flexi-truncate">
-                <div class="slds-media__figure">
-                    <lightning-icon icon-name="standard:case" size="small"></lightning-icon>
-                </div>
-                <div class="slds-media__body">
-                    <h2 class="slds-card__header-title">Related Cases</h2>
-                </div>
-            </header>
+  <article class="slds-card">
+    <div class="slds-card__header slds-grid">
+      <header class="slds-media slds-media_center slds-has-flexi-truncate">
+        <div class="slds-media__figure">
+          <lightning-icon
+            icon-name="standard:case"
+            size="small"
+          ></lightning-icon>
         </div>
+        <div class="slds-media__body">
+          <h2 class="slds-card__header-title">Related Cases</h2>
+        </div>
+      </header>
+    </div>
 
-        <div class="slds-card__body slds-card__body_inner">
-            <!-- Loading -->
-            <template lwc:if={isLoading}>
-                <c-loading-skeleton variant="list" count="2"></c-loading-skeleton>
-            </template>
+    <div class="slds-card__body slds-card__body_inner">
+      <!-- Loading -->
+      <template lwc:if={isLoading}>
+        <c-loading-skeleton variant="list" count="2"></c-loading-skeleton>
+      </template>
 
-            <!-- Empty -->
-            <template lwc:elseif={isEmpty}>
-                <c-empty-state
-                    title="No Cases"
-                    message="There are no support cases for this device."
-                    icon-name="standard:case">
-                </c-empty-state>
-            </template>
+      <!-- Empty -->
+      <template lwc:elseif={isEmpty}>
+        <c-empty-state
+          title="No Cases"
+          message="There are no support cases for this device."
+          icon-name="standard:case"
+        >
+        </c-empty-state>
+      </template>
 
-            <!-- Error -->
-            <template lwc:elseif={error}>
-                <c-error-panel errors={error}></c-error-panel>
-            </template>
+      <!-- Error -->
+      <template lwc:elseif={error}>
+        <c-error-panel errors={error}></c-error-panel>
+      </template>
 
-            <!-- Content -->
-            <template lwc:else>
-                <ul class="slds-has-dividers_bottom-space">
-                    <template for:each={cases} for:item="cse">
-                        <li
-                            key={cse.Id}
-                            class="slds-item case-row"
-                            data-id={cse.Id}
-                            role="button"
-                            tabindex="0"
-                            onclick={handleCaseClick}>
-                            <div class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center">
-                                <div class="slds-truncate">
-                                    <p class="slds-text-body_regular slds-truncate">{cse.Subject}</p>
-                                    <p class="slds-text-body_small slds-text-color_weak">
-                                        {cse.CaseNumber}
-                                        <template lwc:if={cse.Error_Code__c}>
-                                            &nbsp;&middot;&nbsp;{cse.Error_Code__c}
-                                        </template>
-                                    </p>
-                                </div>
-                                <c-status-badge status={cse.Status}></c-status-badge>
-                            </div>
-                        </li>
+      <!-- Content -->
+      <template lwc:else>
+        <ul class="slds-has-dividers_bottom-space">
+          <template for:each={cases} for:item="cse">
+            <li
+              key={cse.Id}
+              class="slds-item case-row"
+              data-id={cse.Id}
+              role="button"
+              tabindex="0"
+              onclick={handleCaseClick}
+            >
+              <div
+                class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center"
+              >
+                <div class="slds-truncate">
+                  <p class="slds-text-body_regular slds-truncate">
+                    {cse.Subject}
+                  </p>
+                  <p class="slds-text-body_small slds-text-color_weak">
+                    {cse.CaseNumber}
+                    <template lwc:if={cse.Error_Code__c}>
+                      &nbsp;&middot;&nbsp;{cse.Error_Code__c}
                     </template>
-                </ul>
-            </template>
-        </div>
-    </article>
+                  </p>
+                </div>
+                <c-status-badge status={cse.Status}></c-status-badge>
+              </div>
+            </li>
+          </template>
+        </ul>
+      </template>
+    </div>
+  </article>
 </template>

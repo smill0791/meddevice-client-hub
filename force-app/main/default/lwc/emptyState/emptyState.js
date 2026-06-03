@@ -1,4 +1,4 @@
-import { LightningElement, api } from 'lwc';
+import { LightningElement, api } from "lwc";
 
 /**
  * Reusable empty-state placeholder: an icon, a title, a message, and an
@@ -7,19 +7,19 @@ import { LightningElement, api } from 'lwc';
  * Fires: action (when the CTA button is clicked)
  */
 export default class EmptyState extends LightningElement {
-    // 1. Public reactive properties
-    @api title = 'Nothing here yet';
-    @api message;
-    @api iconName = 'utility:info';
-    @api actionLabel;
+  // 1. Public reactive properties
+  @api title = "Nothing here yet";
+  @api message;
+  @api iconName = "utility:info";
+  @api actionLabel;
 
-    // 6. Event handlers
-    handleAction() {
-        this.dispatchEvent(new CustomEvent('action'));
-    }
+  // 6. Event handlers
+  handleAction() {
+    this.dispatchEvent(new CustomEvent("action"));
+  }
 
-    // 7. Getters
-    get hasAction() {
-        return !!this.actionLabel;
-    }
+  // 7. Getters
+  get hasAction() {
+    return !!this.actionLabel;
+  }
 }

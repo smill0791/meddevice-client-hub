@@ -1,41 +1,43 @@
 <template>
-    <div class="slds-grid slds-wrap slds-gutters">
-        <!-- Left: device list -->
-        <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2">
-            <c-asset-list
-                account-id={accountId}
-                onassetselect={handleAssetSelect}>
-            </c-asset-list>
-        </div>
-
-        <!-- Right: device detail (children driven by selectedAssetId) -->
-        <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2">
-            <template lwc:if={hasSelection}>
-                <div class="slds-grid slds-wrap slds-gutters_direct-small detail-stack">
-                    <div class="slds-col slds-size_1-of-1 slds-m-bottom_small">
-                        <c-asset-details-panel asset-id={selectedAssetId}></c-asset-details-panel>
-                    </div>
-                    <div class="slds-col slds-size_1-of-1 slds-m-bottom_small">
-                        <c-related-cases-list
-                            asset-id={selectedAssetId}
-                            oncaseselect={handleCaseSelect}>
-                        </c-related-cases-list>
-                    </div>
-                    <div class="slds-col slds-size_1-of-1">
-                        <c-service-history-timeline asset-id={selectedAssetId}>
-                        </c-service-history-timeline>
-                    </div>
-                </div>
-            </template>
-            <template lwc:else>
-                <div class="slds-card slds-p-around_medium">
-                    <c-empty-state
-                        title="Select a Device"
-                        message="Choose a device from the list to view its details, service history, and related cases."
-                        icon-name="utility:touch_action">
-                    </c-empty-state>
-                </div>
-            </template>
-        </div>
+  <div class="slds-grid slds-wrap slds-gutters">
+    <!-- Left: device list -->
+    <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2">
+      <c-asset-list account-id={accountId} onassetselect={handleAssetSelect}>
+      </c-asset-list>
     </div>
+
+    <!-- Right: device detail (children driven by selectedAssetId) -->
+    <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2">
+      <template lwc:if={hasSelection}>
+        <div class="slds-grid slds-wrap slds-gutters_direct-small detail-stack">
+          <div class="slds-col slds-size_1-of-1 slds-m-bottom_small">
+            <c-asset-details-panel
+              asset-id={selectedAssetId}
+            ></c-asset-details-panel>
+          </div>
+          <div class="slds-col slds-size_1-of-1 slds-m-bottom_small">
+            <c-related-cases-list
+              asset-id={selectedAssetId}
+              oncaseselect={handleCaseSelect}
+            >
+            </c-related-cases-list>
+          </div>
+          <div class="slds-col slds-size_1-of-1">
+            <c-service-history-timeline asset-id={selectedAssetId}>
+            </c-service-history-timeline>
+          </div>
+        </div>
+      </template>
+      <template lwc:else>
+        <div class="slds-card slds-p-around_medium">
+          <c-empty-state
+            title="Select a Device"
+            message="Choose a device from the list to view its details, service history, and related cases."
+            icon-name="utility:touch_action"
+          >
+          </c-empty-state>
+        </div>
+      </template>
+    </div>
+  </div>
 </template>

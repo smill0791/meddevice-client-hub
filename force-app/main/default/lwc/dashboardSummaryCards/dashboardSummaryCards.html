@@ -1,31 +1,40 @@
 <template>
-    <div class="slds-grid slds-wrap slds-gutters">
-        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-p-vertical_x-small">
-            <c-summary-card
-                label="Open Cases"
-                value={openCases}
-                is-loading={openCasesLoading}
-                icon-name="standard:case"
-                accent="#c23934">
-            </c-summary-card>
-        </div>
-        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-p-vertical_x-small">
-            <c-summary-card
-                label="Upcoming Service Visits"
-                value={upcomingVisits}
-                is-loading={upcomingVisitsLoading}
-                icon-name="standard:work_order"
-                accent="#0066b3">
-            </c-summary-card>
-        </div>
-        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-p-vertical_x-small">
-            <c-summary-card
-                label="Active Devices"
-                value={activeDevices}
-                is-loading={activeDevicesLoading}
-                icon-name="standard:asset_object"
-                accent="#04844b">
-            </c-summary-card>
-        </div>
+  <div class="slds-grid slds-wrap slds-gutters">
+    <div
+      class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-p-vertical_x-small"
+    >
+      <c-summary-card
+        label="Open Cases"
+        value={openCases}
+        is-loading={openCasesLoading}
+        icon-name="standard:case"
+        accent="#c23934"
+      >
+      </c-summary-card>
     </div>
+    <div
+      class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-p-vertical_x-small"
+    >
+      <c-summary-card
+        label="Upcoming Service Visits"
+        value={upcomingVisits}
+        is-loading={upcomingVisitsLoading}
+        icon-name="standard:work_order"
+        accent="#0066b3"
+      >
+      </c-summary-card>
+    </div>
+    <div
+      class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-p-vertical_x-small"
+    >
+      <c-summary-card
+        label="Active Devices"
+        value={activeDevices}
+        is-loading={activeDevicesLoading}
+        icon-name="standard:asset_object"
+        accent="#04844b"
+      >
+      </c-summary-card>
+    </div>
+  </div>
 </template>

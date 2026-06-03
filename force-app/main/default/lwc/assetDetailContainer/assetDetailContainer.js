@@ -1,5 +1,5 @@
-import { LightningElement, api } from 'lwc';
-import { NavigationMixin } from 'lightning/navigation';
+import { LightningElement, api } from "lwc";
+import { NavigationMixin } from "lightning/navigation";
 
 /**
  * Parent orchestrator for the "My Devices" page. Composes the asset list with
@@ -13,31 +13,33 @@ import { NavigationMixin } from 'lightning/navigation';
  *
  * This keeps the children dumb and reactive while the container owns selection.
  */
-export default class AssetDetailContainer extends NavigationMixin(LightningElement) {
-    // 1. Public reactive properties
-    @api accountId;
+export default class AssetDetailContainer extends NavigationMixin(
+  LightningElement
+) {
+  // 1. Public reactive properties
+  @api accountId;
 
-    // 2. Private reactive properties
-    selectedAssetId;
+  // 2. Private reactive properties
+  selectedAssetId;
 
-    // 6. Event handlers
-    handleAssetSelect(event) {
-        this.selectedAssetId = event.detail.assetId;
-    }
+  // 6. Event handlers
+  handleAssetSelect(event) {
+    this.selectedAssetId = event.detail.assetId;
+  }
 
-    handleCaseSelect(event) {
-        this[NavigationMixin.Navigate]({
-            type: 'standard__recordPage',
-            attributes: {
-                recordId: event.detail.caseId,
-                objectApiName: 'Case',
-                actionName: 'view'
-            }
-        });
-    }
+  handleCaseSelect(event) {
+    this[NavigationMixin.Navigate]({
+      type: "standard__recordPage",
+      attributes: {
+        recordId: event.detail.caseId,
+        objectApiName: "Case",
+        actionName: "view"
+      }
+    });
+  }
 
-    // 7. Getters
-    get hasSelection() {
-        return !!this.selectedAssetId;
-    }
+  // 7. Getters
+  get hasSelection() {
+    return !!this.selectedAssetId;
+  }
 }

@@ -1,14 +1,14 @@
 :host {
-    display: block;
+  display: block;
 }
 
 .detail-stack {
-    position: sticky;
-    top: 1rem;
+  position: sticky;
+  top: 1rem;
 }
 
 @media (max-width: 1024px) {
-    .detail-stack {
-        position: static;
-    }
+  .detail-stack {
+    position: static;
+  }
 }

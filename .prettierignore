@@ -9,3 +9,13 @@
 .vscode
 
 coverage/
+
+# Apex/Aura formatting is handled by the Salesforce extension, not Prettier.
+# Excluded because prettier-plugin-apex's native parser crashes on x64 Node
+# under Rosetta (Apple Silicon). Remove these once running on arm64 Node.
+**/*.cls
+**/*.trigger
+**/*.apex
+**/*.cmp
+**/*.component
+**/*.page

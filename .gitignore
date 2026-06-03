@@ -47,5 +47,6 @@ $RECYCLE.BIN/
 **/.venv/
 **/venv/
 
-# Local-only original setup guide (kept on disk, excluded from repo)
+# Local-only docs (kept on disk, excluded from repo)
 SETUP_GUIDE.local.md
+SESSION_NOTES.local.md
